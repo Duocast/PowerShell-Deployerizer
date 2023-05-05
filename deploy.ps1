@@ -18,13 +18,13 @@ foreach ($machine in $machines) {
 
     try {
         # Copy script to target machine
-        $destinationPath = "\\$machine\c$\temp\TargetScript.ps1"
+        $destinationPath = "\\$machine\c$\temp\GlobalFinder_2.3.py"
         Copy-Item -Path $ScriptPath -Destination $destinationPath
 
         # Execute script on target machine
         Invoke-Command -ComputerName $machine -ScriptBlock {
             Set-ExecutionPolicy Bypass -Scope Process -Force
-            & "C:\temp\TargetScript.ps1"
+            & "C:\temp\GlobalFinder_2.3.py"
         } -ErrorAction Stop
 
         $successCount++
